@@ -7,7 +7,11 @@ app.controller("myCtrl", function($scope) {
 	
 	$scope.addPost = function (titre,contenu) {
 		var d = new Date()
-		$scope.posts.push({'titre':titre,'contenu':contenu,date:d.getTime(),love:0});
+		$scope.posts.push({ 'titre':titre,
+							'contenu':contenu,
+							date:d.getTime(),
+							love:0
+		});
 	};
 
 });
