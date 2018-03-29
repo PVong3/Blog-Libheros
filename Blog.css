@@ -1,0 +1,23 @@
+body {
+	background-color:lightblue
+}
+
+.Post {
+	width:70%;
+	padding-left:30px;
+	padding-right:30px;
+	padding-bottom:10px;    
+	border-style: solid;
+	background-color:white;
+}
+
+.Titre {
+	display:inline-block;
+	vertical-align: top;
+}
+
+.Date {
+	display:inline-block;
+	vertical-align: top;
+	float: right;
+}

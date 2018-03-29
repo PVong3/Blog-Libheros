@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+	
+	<head>
+		<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="Blog.css">
+	</head> 
+
+		<!--Body beginning-->
+	<body ng-app='myApp' ng-controller="myCtrl">
+				<!--Create post-->
+		<h1>Create post</h1>
+			<div style='padding-left:20px'>
+				<p>Titre : <input ng-model='newTitre'></p>
+				<p>Contenu : <textarea ng-model='$parent.newContenu'></textarea></p>
+				<input type='submit' ng-click="addPost(newTitre,newContenu)">
+			</div>
+			
+
+				<!--Show post-->
+		<h1>Posts</h1>
+			<div style='padding-left:20px'>
+				<div ng-repeat="post in posts" class='Post' ng-style="post['love'] < 0 && {'background-color':'red'} || post['love'] > 0 && {'background-color':'lightgreen'}">
+					<div>
+						<h2 class='Titre' >{{post['titre']}}</h1>
+						<p class='Date'>{{post['date'] | date:'MM/dd/yyyy @ h:mma'}}</p>
+					</div>
+					<p>{{post['contenu']}}</p>
+					<button ng-click="post['love'] = post['love'] + 1">Love it !</button>	<button ng-click="post['love'] = post['love'] - 1">Don't love it</button>
+					<p>{{post['love']}} love</p>
+				</div>
+			</div>
+	</body>
+		<!--Body end-->
+</html>
+
+
+		<!--JS-->
+<script>
+	var app = angular.module("myApp", []);
+	app.controller("myCtrl", function($scope) {
+		$scope.posts = [
+			{titre:'First',contenu:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacus lectus, rutrum in ante eu, scelerisque egestas libero. Vestibulum ante ipsum primis in faucibus orci. ',date:'1288323659006',love:2},
+			{titre:'Second',contenu:'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse lacus lectus, rutrum in ante eu, scelerisque egestas libero. Vestibulum ante ipsum primis in faucibus orci. ',date:'1288323661006',love:-3}
+		]
+		
+		$scope.addPost = function (titre,contenu) {
+			var d = new Date()
+			$scope.posts.push({'titre':titre,'contenu':contenu,date:d.getTime(),love:0});
+		};
+
+	});
+</script>
